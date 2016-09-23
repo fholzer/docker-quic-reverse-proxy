@@ -8,9 +8,9 @@ WORKDIR /usr/goquic
 
 RUN mkdir -p /go/src/github.com/devsisters && \
 	cd /go/src/github.com/devsisters && \
-	apk add --no-cache --virtual build-deps g++ go cmake ninja perl linux-headers make git && \
+	apk add --no-cache --virtual build-deps g++ go cmake ninja perl linux-headers make git coreutils && \
 	git config --global submodule.libquic.shallow true && \
-	git clone --depth 1 --recursive https://github.com/devsisters/goquic.git goquic && \
+	git clone --depth 1 --recursive -b fix-build https://github.com/fholzer/goquic.git goquic && \
 	cd goquic && \
 	./build_libs.sh -a -r && \
 	GOPATH=/go go build /go/src/github.com/devsisters/goquic/example/reverse_proxy.go && \
