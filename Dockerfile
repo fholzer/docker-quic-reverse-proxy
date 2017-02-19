@@ -19,7 +19,7 @@ RUN mkdir -p /go/src/github.com/devsisters && \
 	rm -rf /go && \
 	apk del build-deps 
 
-RUN apk add --no-cache libstdc++ libgcc
+RUN apk add --no-cache libstdc++ libgcc ca-certificates
 
 ENTRYPOINT ["/usr/goquic/reverse_proxy"]
 CMD ["--help"]
